@@ -2,6 +2,9 @@
 
 A mini bit.ly-style URL shortener with Node.js + Express backend, Postgres (Neon), and React frontend.
 
+## Live Demo
+https://url-shortener-pnxn.onrender.com/
+
 ## Features
 
 - Create short links (auto or custom code)
