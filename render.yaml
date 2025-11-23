@@ -20,7 +20,7 @@ services:
       - key: BASE_URL
         sync: false
       - key: CORS_ORIGIN
-        value: *
+        value: "*"
       - key: FRONTEND_BUILD_DIR
         value: ../my-app/build
       - key: APP_VERSION
