@@ -28,7 +28,6 @@ services:
   - type: web
     name: url-shortener-frontend
     runtime: static
-    plan: free
     buildCommand: cd my-app && npm install && npm run build
     staticPublishPath: ./my-app/build
     envVars:
