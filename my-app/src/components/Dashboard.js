@@ -13,7 +13,7 @@ function formatDate(value) {
 function buildShortUrl(code, apiShortUrl) {
   if (apiShortUrl) return apiShortUrl;
   if (typeof window !== 'undefined' && window.location && window.location.origin) {
-    return `${window.location.origin.replace('3000', '4000')}/${code}`;
+    return `${window.location.origin}/${code}`;
   }
   return `/${code}`;
 }
@@ -36,7 +36,7 @@ const Dashboard = () => {
     setLoading(true);
     setError('');
     try {
-      const res = await fetch('http://localhost:4000/api/links');
+      const res = await fetch('/api/links');
       if (!res.ok) {
         const txt = await res.text();
         console.error('loadLinks non-JSON response', txt);
@@ -100,7 +100,7 @@ const Dashboard = () => {
     setSuccess('');
 
     try {
-      const res = await fetch('http://localhost:4000/api/links', {
+      const res = await fetch('/api/links', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ url: url.trim(), code: code.trim() || undefined }),
@@ -142,7 +142,7 @@ const Dashboard = () => {
     setSuccess('');
 
     try {
-      const res = await fetch(`http://localhost:4000/api/links/${encodeURIComponent(codeToDelete)}`, {
+      const res = await fetch(`/api/links/${encodeURIComponent(codeToDelete)}`, {
         method: 'DELETE',
       });
       if (!res.ok && res.status !== 404) {

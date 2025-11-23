@@ -13,7 +13,7 @@ function formatDate(value) {
 function buildShortUrl(code, apiShortUrl) {
   if (apiShortUrl) return apiShortUrl;
   if (typeof window !== 'undefined' && window.location && window.location.origin) {
-    return `${window.location.origin.replace('3000', '4000')}/${code}`;
+    return `${window.location.origin}/${code}`;
   }
   return `/${code}`;
 }
@@ -30,7 +30,7 @@ const CodeStatsPage = () => {
       setLoading(true);
       setError('');
       try {
-        const res = await fetch(`http://localhost:4000/api/links/${encodeURIComponent(code)}`);
+        const res = await fetch(`/api/links/${encodeURIComponent(code)}`);
         if (res.status === 404) {
           setError('Link not found');
           setLoading(false);
