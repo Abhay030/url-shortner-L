@@ -1,0 +1,36 @@
+services:
+  # Backend (Node.js + Express + Postgres)
+  - type: web
+    name: url-shortener-backend
+    runtime: node
+    plan: free
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: DB_SSL
+        value: true
+      - key: PORT
+        value: 10000
+      - key: BASE_URL
+        sync: false
+      - key: CORS_ORIGIN
+        value: https://url-shortener-backend.onrender.com
+      - key: FRONTEND_BUILD_DIR
+        value: ../my-app/build
+      - key: APP_VERSION
+        value: 1.0
+
+  # Frontend (React static build)
+  - type: web
+    name: url-shortener-frontend
+    runtime: static
+    plan: free
+    buildCommand: cd my-app && npm install && npm run build
+    staticPublishPath: ./my-app/build
+    envVars:
+      - key: REACT_APP_API_URL
+        value: https://url-shortener-backend.onrender.com
